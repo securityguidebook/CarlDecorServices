@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carl Decor – Handyman Services Auckland</title>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SECURITY HEADERS (meta-tag equivalents for GitHub Pages)
+       Full header versions should be set via _headers file (Netlify)
+       or vercel.json if migrating. Documented in README.md.
+  ═══════════════════════════════════════════════════════════════ -->
+
+  <!-- Content Security Policy
+       Restricts resource loading to trusted origins only.
+       Blocks inline script injection (XSS), unauthorised iframes,
+       and data exfiltration to unknown hosts. -->
+  <meta http-equiv="Content-Security-Policy"
+        content="
+          default-src 'self';
+          script-src  'self' 'nonce-CARLDECOR2026' https://challenges.cloudflare.com;
+          style-src   'self' 'unsafe-inline' https://fonts.googleapis.com;
+          font-src    'self' https://fonts.gstatic.com;
+          img-src     'self' data: https://images.unsplash.com;
+          frame-src   https://challenges.cloudflare.com;
+          connect-src 'self' https://formspree.io;
+          object-src  'none';
+          base-uri    'self';
+          form-action 'self' https://formspree.io;
+        " />
+
+  <!-- Clickjacking Protection — prevents page being embedded in iframes -->
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+
+  <!-- MIME-type sniffing prevention -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+
+  <!-- Referrer Policy — limits URL data sent on outbound navigation -->
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- Permissions Policy — disables unused browser APIs (microphone, camera, etc.) -->
+  <meta http-equiv="Permissions-Policy"
+        content="camera=(), microphone=(), geolocation=(), payment=()" />
+
+  <!-- Google Fonts — loaded with crossorigin for SRI compatibility -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet"
+        crossorigin="anonymous" />
+
+  <!-- Cloudflare Turnstile CAPTCHA (privacy-respecting, no user friction) -->
+  <!-- Uncomment when you have your Turnstile site key:
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  -->
+
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --navy:      #0B1F3A;
+      --navy-mid:  #122850;
+      --navy-light:#1a3566;
+      --gold:      #C9A84C;
+      --gold-light:#e8c97a;
+      --white:     #FFFFFF;
+      --off-white: #F7F5F0;
+      --text-muted:#7a8499;
+      --radius:    6px;
+      --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ─── RESET ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+    img { display: block; width: 100%; object-fit: cover; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ─── UTILITY ────────────────────────────────────────── */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .gold-line {
+      display: block; width: 56px; height: 3px;
+      background: var(--gold); margin: 0 auto 20px;
+    }
+    .section-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px; font-weight: 500; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gold);
+      display: block; margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700; color: var(--navy);
+      line-height: 1.2;
+    }
+    .section-title.light { color: var(--white); }
+
+    /* ─── NAV ────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(11,31,58,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(201,168,76,0.25);
+      transition: var(--transition);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 700; color: var(--white);
+      letter-spacing: 0.5px;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-size: 13px; font-weight: 500; letter-spacing: 1px;
+      text-transform: uppercase; color: rgba(255,255,255,0.75);
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold); color: var(--navy);
+      padding: 10px 22px; border-radius: var(--radius);
+      font-size: 13px; font-weight: 500; letter-spacing: 0.5px;
+      transition: background var(--transition);
+    }
+    .nav-cta:hover { background: var(--gold-light); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: var(--transition); }
+    .mobile-menu {
+      display: none; flex-direction: column;
+      background: var(--navy); border-top: 1px solid rgba(201,168,76,0.2);
+    }
+    .mobile-menu a {
+      padding: 16px 24px; font-size: 14px; font-weight: 500;
+      color: rgba(255,255,255,0.85); border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: block; letter-spacing: 0.5px;
+    }
+    .mobile-menu a:hover { color: var(--gold); background: rgba(201,168,76,0.05); }
+    .mobile-menu.open { display: flex; }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    #home {
+      min-height: 100vh;
+      background:
+        linear-gradient(160deg, rgba(11,31,58,0.92) 0%, rgba(11,31,58,0.75) 60%, rgba(18,40,80,0.85) 100%),
+        url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80') center/cover no-repeat;
+      display: flex; align-items: center;
+      padding-top: 68px;
+      position: relative; overflow: hidden;
+    }
+    #home::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
+      background: linear-gradient(to bottom, transparent, var(--white));
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 680px;
+      animation: fadeUp 0.9s ease both;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold); padding: 7px 16px; border-radius: 40px;
+      font-size: 12px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-badge::before { content: '●'; font-size: 8px; }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 6vw, 78px);
+      font-weight: 900; color: var(--white);
+      line-height: 1.08; margin-bottom: 24px;
+    }
+    .hero-title em { color: var(--gold); font-style: normal; }
+    .hero-subtitle {
+      font-size: 17px; font-weight: 300; color: rgba(255,255,255,0.75);
+      line-height: 1.7; margin-bottom: 40px; max-width: 520px;
+    }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gold); color: var(--navy);
+      padding: 16px 34px; border-radius: var(--radius);
+      font-size: 14px; font-weight: 500; letter-spacing: 0.5px;
+      transition: all var(--transition); display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.35); }
+    .btn-outline {
+      border: 1.5px solid rgba(255,255,255,0.4); color: var(--white);
+      padding: 16px 34px; border-radius: var(--radius);
+      font-size: 14px; font-weight: 400; letter-spacing: 0.5px;
+      transition: all var(--transition); display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ─── STATS BAR ──────────────────────────────────────── */
+    .stats-bar { background: var(--navy); padding: 32px 0; }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; text-align: center;
+    }
+    .stat-item {
+      padding: 8px 16px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px; font-weight: 700; color: var(--gold);
+      line-height: 1; margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 12px; font-weight: 400; color: rgba(255,255,255,0.55);
+      letter-spacing: 1px; text-transform: uppercase;
+    }
+
+    /* ─── SERVICES ───────────────────────────────────────── */
+    #services { padding: 100px 0 80px; background: var(--off-white); }
+    .services-header { text-align: center; margin-bottom: 60px; }
+    .services-header p { color: var(--text-muted); font-size: 16px; max-width: 480px; margin: 16px auto 0; line-height: 1.7; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+    .service-card {
+      background: var(--white); border-radius: 10px; overflow: hidden;
+      box-shadow: 0 2px 16px rgba(11,31,58,0.07);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(11,31,58,0.14); }
+    .service-img { height: 180px; background: var(--navy-light); position: relative; overflow: hidden; }
+    .service-img img { height: 100%; transition: transform 0.5s ease; }
+    .service-card:hover .service-img img { transform: scale(1.06); }
+    .service-img-placeholder { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
+    .service-icon { font-size: 42px; }
+    .service-img-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+    .service-body { padding: 24px; }
+    .service-body h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .service-body p { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+    .service-tag { display: inline-block; margin-top: 14px; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+
+    /* ─── GALLERY ────────────────────────────────────────── */
+    #gallery { padding: 100px 0; background: var(--white); }
+    .gallery-header { text-align: center; margin-bottom: 60px; }
+    .gallery-header p { color: var(--text-muted); font-size: 16px; max-width: 480px; margin: 16px auto 0; line-height: 1.7; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
+    .gallery-item { border-radius: 10px; overflow: hidden; position: relative; aspect-ratio: 4/3; background: var(--navy-light); cursor: pointer; }
+    .gallery-item img { height: 100%; transition: transform 0.5s ease; }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-placeholder { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+    .gallery-placeholder .ph-icon { font-size: 36px; }
+    .gallery-placeholder .ph-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+    .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(11,31,58,0.7) 0%, transparent 60%); opacity: 0; transition: opacity var(--transition); display: flex; align-items: flex-end; padding: 20px; }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay span { color: var(--white); font-size: 13px; font-weight: 500; letter-spacing: 0.5px; }
+
+    /* Before/After Slider */
+    .before-after-wrap { border-radius: 12px; overflow: hidden; box-shadow: 0 8px 40px rgba(11,31,58,0.12); margin-top: 16px; }
+    .before-after-label { text-align: center; margin-bottom: 24px; font-size: 14px; color: var(--text-muted); letter-spacing: 0.5px; }
+    .slider-container { position: relative; width: 100%; aspect-ratio: 16/7; overflow: hidden; user-select: none; cursor: ew-resize; }
+    .slider-before, .slider-after { position: absolute; inset: 0; height: 100%; }
+    .slider-before { background: #1a3566; }
+    .slider-after { background: #0B1F3A; }
+    .slider-before-ph, .slider-after-ph { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }
+    .slider-ph-icon { font-size: 56px; }
+    .slider-ph-label { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: rgba(255,255,255,0.6); letter-spacing: 2px; }
+    .slider-ph-sub { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+    .slider-after { clip-path: inset(0 50% 0 0); }
+    .slider-divider { position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); width: 3px; background: var(--gold); z-index: 10; pointer-events: none; }
+    .slider-handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 44px; height: 44px; border-radius: 50%; background: var(--gold); border: 3px solid var(--white); display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--navy); z-index: 11; box-shadow: 0 4px 16px rgba(0,0,0,0.3); pointer-events: none; }
+    .slider-tag { position: absolute; top: 16px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 12px; border-radius: 3px; z-index: 5; font-weight: 500; }
+    .slider-tag.before-tag { left: 16px; background: rgba(11,31,58,0.7); color: rgba(255,255,255,0.7); }
+    .slider-tag.after-tag { right: 16px; background: rgba(201,168,76,0.85); color: var(--navy); }
+
+    /* ─── TESTIMONIALS ───────────────────────────────────── */
+    #testimonials { padding: 100px 0; background: var(--navy); position: relative; overflow: hidden; }
+    #testimonials::before { content: '"'; font-family: 'Playfair Display', serif; font-size: 400px; color: rgba(201,168,76,0.04); position: absolute; top: -60px; left: -20px; line-height: 1; pointer-events: none; }
+    .testimonials-header { text-align: center; margin-bottom: 60px; }
+    .testimonials-header p { color: rgba(255,255,255,0.5); font-size: 16px; max-width: 440px; margin: 16px auto 0; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .testimonial-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.2); border-radius: 10px; padding: 36px 32px; transition: background var(--transition), border-color var(--transition); position: relative; }
+    .testimonial-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(201,168,76,0.45); }
+    .stars { color: var(--gold); font-size: 16px; letter-spacing: 2px; margin-bottom: 20px; }
+    .testimonial-card blockquote { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.75; font-style: italic; margin-bottom: 28px; }
+    .testimonial-author { display: flex; align-items: center; gap: 14px; }
+    .author-avatar { width: 46px; height: 46px; border-radius: 50%; background: var(--navy-light); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .author-name { font-size: 15px; font-weight: 500; color: var(--white); margin-bottom: 2px; }
+    .author-location { font-size: 12px; color: rgba(255,255,255,0.35); letter-spacing: 0.5px; }
+
+    /* ─── WHY CHOOSE US ──────────────────────────────────── */
+    #why { padding: 100px 0; background: var(--off-white); }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .why-image { border-radius: 12px; overflow: hidden; box-shadow: 0 16px 56px rgba(11,31,58,0.15); aspect-ratio: 4/3; background: var(--navy-light); position: relative; }
+    .why-image-ph { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
+    .why-image-ph .ph-icon { font-size: 64px; }
+    .why-image-ph .ph-label { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+    .why-badge-overlay { position: absolute; bottom: 24px; left: 24px; background: var(--gold); color: var(--navy); padding: 16px 24px; border-radius: 8px; }
+    .why-badge-overlay .badge-num { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; line-height: 1; }
+    .why-badge-overlay .badge-text { font-size: 12px; font-weight: 500; letter-spacing: 0.5px; margin-top: 4px; }
+    .why-content p { font-size: 16px; color: var(--text-muted); line-height: 1.75; margin: 20px 0 40px; }
+    .why-features { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .why-feature { display: flex; gap: 14px; align-items: flex-start; }
+    .feature-icon { width: 44px; height: 44px; border-radius: 8px; background: var(--navy); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+    .feature-text h4 { font-size: 14px; font-weight: 500; color: var(--navy); margin-bottom: 4px; }
+    .feature-text p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+    /* ─── CONTACT ────────────────────────────────────────── */
+    #contact { padding: 100px 0; background: var(--white); }
+    .contact-wrap { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
+    .contact-info p { color: var(--text-muted); font-size: 16px; line-height: 1.75; margin: 20px 0 40px; }
+    .contact-details { display: flex; flex-direction: column; gap: 20px; }
+    .contact-detail { display: flex; align-items: flex-start; gap: 16px; }
+    .detail-icon { width: 42px; height: 42px; border-radius: 8px; background: var(--navy); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .detail-label { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 2px; }
+    .detail-value { font-size: 15px; color: var(--navy); font-weight: 500; }
+    .contact-form-wrap { background: var(--off-white); border-radius: 12px; padding: 48px 40px; box-shadow: 0 4px 32px rgba(11,31,58,0.07); }
+    .form-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--navy); margin-bottom: 32px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .form-group label { font-size: 12px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--navy); }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 13px 16px; border: 1.5px solid rgba(11,31,58,0.12); border-radius: var(--radius);
+      font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--navy);
+      background: var(--white); transition: border-color var(--transition); outline: none;
+      /* Security: autocomplete off on sensitive fields handled per-field */
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.12); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-group select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230B1F3A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; }
+
+    /* Honeypot field — visually hidden from humans, filled by bots */
+    .hp-field { opacity: 0; position: absolute; top: 0; left: 0; height: 0; width: 0; z-index: -1; pointer-events: none; tabindex: -1; }
+
+    /* Rate-limit warning */
+    .rate-warning { display: none; padding: 12px 16px; background: #fff3cd; border: 1px solid #ffc107; border-radius: var(--radius); font-size: 13px; color: #856404; margin-bottom: 12px; }
+
+    /* Field error state */
+    .field-error { border-color: #dc3545 !important; }
+    .error-msg { font-size: 11px; color: #dc3545; margin-top: 2px; display: none; }
+    .error-msg.show { display: block; }
+
+    .form-submit {
+      width: 100%; background: var(--navy); color: var(--white);
+      border: none; padding: 16px; border-radius: var(--radius); cursor: pointer;
+      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
+      transition: all var(--transition); margin-top: 8px;
+    }
+    .form-submit:hover { background: var(--gold); color: var(--navy); transform: translateY(-1px); }
+    .form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .form-success { display: none; text-align: center; padding: 24px; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); border-radius: var(--radius); color: var(--navy); font-size: 15px; margin-top: 16px; }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 0; border-top: 1px solid rgba(201,168,76,0.2); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--white); }
+    .footer-logo span { color: var(--gold); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 13px; transition: color var(--transition); }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy { font-size: 12px; }
+
+    /* ─── ANIMATIONS ─────────────────────────────────────── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta-wrap { display: none; }
+      .hamburger { display: flex; }
+      .why-grid { grid-template-columns: 1fr; gap: 40px; }
+      .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+    }
+    @media (max-width: 600px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .why-features { grid-template-columns: 1fr; }
+      .hero-buttons { flex-direction: column; }
+      .btn-primary, .btn-outline { text-align: center; }
+      .contact-form-wrap { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ─────────────────────────────────────────────── -->
+<nav id="navbar">
+  <div class="container nav-inner">
+    <div class="nav-logo">Carl<span>Decor</span></div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Our Work</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#why">About</a></li>
+    </ul>
+    <div class="nav-cta-wrap" style="display:flex">
+      <a href="#contact" class="nav-cta">Get a Quote</a>
+    </div>
+    <div class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services" class="mobile-link">Services</a>
+    <a href="#gallery" class="mobile-link">Our Work</a>
+    <a href="#testimonials" class="mobile-link">Reviews</a>
+    <a href="#why" class="mobile-link">About</a>
+    <a href="#contact" class="mobile-link" style="color:var(--gold)">Get a Quote →</a>
+  </div>
+</nav>
+
+<!-- ─── HERO ─────────────────────────────────────────────── -->
+<section id="home">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">Serving Auckland Since 2015</div>
+      <h1 class="hero-title">
+        Expert Handyman<br><em>Done Right,</em><br>Every Time.
+      </h1>
+      <p class="hero-subtitle">
+        From plumbing repairs to full home maintenance, Carl Decor delivers reliable,
+        professional results you can trust. Fully insured. No job too big or small.
+      </p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn-primary">Request a Free Quote</a>
+        <a href="#gallery" class="btn-outline">View Our Work</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── STATS BAR ─────────────────────────────────────────── -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item"><div class="stat-num">10+</div><div class="stat-label">Years Experience</div></div>
+      <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">Jobs Completed</div></div>
+      <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Insured &amp; Licensed</div></div>
+      <div class="stat-item"><div class="stat-num">5★</div><div class="stat-label">Average Rating</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── SERVICES ──────────────────────────────────────────── -->
+<section id="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <span class="section-label">What We Do</span>
+      <h2 class="section-title">Our Services</h2>
+      <p>Professional handyman solutions for homes and businesses across Auckland — done right the first time.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-img">
+          <!-- Replace with: <img src="img/plumbing.jpg" alt="Plumbing repair service" loading="lazy" /> -->
+          <div class="service-img-placeholder"><div class="service-icon">🔧</div><div class="service-img-label">Add your photo here</div></div>
+        </div>
+        <div class="service-body">
+          <h3>Plumbing Repairs</h3>
+          <p>Leaky taps, blocked drains, burst pipes and general plumbing maintenance handled efficiently.</p>
+          <span class="service-tag">Residential &amp; Commercial →</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-img">
+          <!-- Replace with: <img src="img/electrical.jpg" alt="Electrical work" loading="lazy" /> -->
+          <div class="service-img-placeholder"><div class="service-icon">⚡</div><div class="service-img-label">Add your photo here</div></div>
+        </div>
+        <div class="service-body">
+          <h3>Electrical Work</h3>
+          <p>Minor electrical repairs, light fittings, switches and outlets — safely and up to code.</p>
+          <span class="service-tag">Certified &amp; Safe →</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-img">
+          <!-- Replace with: <img src="img/maintenance.jpg" alt="Home maintenance" loading="lazy" /> -->
+          <div class="service-img-placeholder"><div class="service-icon">🏠</div><div class="service-img-label">Add your photo here</div></div>
+        </div>
+        <div class="service-body">
+          <h3>General Maintenance</h3>
+          <p>Painting, tiling, patching, deck repairs and all-round home upkeep to keep your property in top shape.</p>
+          <span class="service-tag">Inside &amp; Outside →</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-img">
+          <!-- Replace with: <img src="img/furniture.jpg" alt="Furniture assembly" loading="lazy" /> -->
+          <div class="service-img-placeholder"><div class="service-icon">🛋️</div><div class="service-img-label">Add your photo here</div></div>
+        </div>
+        <div class="service-body">
+          <h3>Furniture Assembly</h3>
+          <p>IKEA, flat-pack or custom furniture — assembled professionally so you don't have to stress.</p>
+          <span class="service-tag">Fast &amp; Fuss-Free →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── GALLERY ────────────────────────────────────────────── -->
+<section id="gallery">
+  <div class="container">
+    <div class="gallery-header reveal">
+      <span class="section-label">Previous Work</span>
+      <h2 class="section-title">Jobs We're Proud Of</h2>
+      <p>Real results from real Auckland homes. Every job treated with the same care and attention.</p>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gallery-item">
+        <!-- <img src="img/job1.jpg" alt="Bathroom renovation Remuera" loading="lazy" /> -->
+        <div class="gallery-placeholder"><div class="ph-icon">📸</div><div class="ph-label">Your photo here</div></div>
+        <div class="gallery-overlay"><span>Bathroom Renovation · Remuera</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder"><div class="ph-icon">📸</div><div class="ph-label">Your photo here</div></div>
+        <div class="gallery-overlay"><span>Deck Repair · Takapuna</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder"><div class="ph-icon">📸</div><div class="ph-label">Your photo here</div></div>
+        <div class="gallery-overlay"><span>Interior Painting · Ponsonby</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder"><div class="ph-icon">📸</div><div class="ph-label">Your photo here</div></div>
+        <div class="gallery-overlay"><span>Kitchen Tiling · Mt Eden</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder"><div class="ph-icon">📸</div><div class="ph-label">Your photo here</div></div>
+        <div class="gallery-overlay"><span>Fence Installation · Howick</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder"><div class="ph-icon">📸</div><div class="ph-label">Your photo here</div></div>
+        <div class="gallery-overlay"><span>Electrical Work · Newmarket</span></div>
+      </div>
+    </div>
+
+    <div class="before-after-label reveal" style="margin-top:52px">
+      <span class="section-label" style="display:block;text-align:center">Before &amp; After</span>
+      <p style="color:var(--text-muted);font-size:15px">Drag the slider to see the transformation</p>
+    </div>
+    <div class="before-after-wrap reveal">
+      <div class="slider-container" id="baSlider">
+        <div class="slider-before">
+          <!-- <img src="img/before.jpg" alt="Before renovation" style="height:100%;width:100%;object-fit:cover" loading="lazy" /> -->
+          <div class="slider-before-ph"><div class="slider-ph-icon">🏚️</div><div class="slider-ph-label">BEFORE</div><div class="slider-ph-sub">Replace with your before photo</div></div>
+        </div>
+        <div class="slider-after" id="sliderAfter">
+          <!-- <img src="img/after.jpg" alt="After renovation" style="height:100%;width:100%;object-fit:cover" loading="lazy" /> -->
+          <div class="slider-after-ph"><div class="slider-ph-icon">🏡</div><div class="slider-ph-label">AFTER</div><div class="slider-ph-sub">Replace with your after photo</div></div>
+        </div>
+        <div class="slider-divider" id="sliderDivider"></div>
+        <div class="slider-handle" id="sliderHandle">⇔</div>
+        <span class="slider-tag before-tag">BEFORE</span>
+        <span class="slider-tag after-tag">AFTER</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ──────────────────────────────────────── -->
+<section id="testimonials">
+  <div class="container">
+    <div class="testimonials-header reveal">
+      <span class="section-label" style="color:var(--gold)">Customer Reviews</span>
+      <h2 class="section-title light">What Our Clients Say</h2>
+      <p>Don't just take our word for it — here's what Auckland homeowners think of our work.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Carl did an amazing job fixing our bathroom plumbing. He was on time, professional, and left everything spotless. Will definitely be calling again!"</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar">👤</div>
+          <div><div class="author-name">Sarah M.</div><div class="author-location">Remuera, Auckland</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Really impressed with the quality of the deck repairs. Carl was transparent with pricing and the finish looks incredible. Highly recommend to anyone in Auckland."</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar">👤</div>
+          <div><div class="author-name">James T.</div><div class="author-location">Takapuna, Auckland</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>"We had a whole list of odd jobs that had been piling up. Carl knocked them all out in one visit. Efficient, friendly, and fairly priced. Absolute legend."</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar">👤</div>
+          <div><div class="author-name">Aroha W.</div><div class="author-location">Mt Eden, Auckland</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHY CHOOSE US ─────────────────────────────────────── -->
+<section id="why">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-image reveal">
+        <!-- <img src="img/about.jpg" alt="Carl at work" style="height:100%;object-fit:cover" loading="lazy" /> -->
+        <div class="why-image-ph"><div class="ph-icon">👷</div><div class="ph-label">Add a team or job photo here</div></div>
+        <div class="why-badge-overlay">
+          <div class="badge-num">500+</div>
+          <div class="badge-text">Happy Customers</div>
+        </div>
+      </div>
+      <div class="why-content reveal">
+        <span class="section-label">Why Choose Us</span>
+        <h2 class="section-title">Auckland's Trusted Handyman Service</h2>
+        <p>Carl Decor has been keeping Auckland homes in excellent condition for over a decade. We bring skill, honesty, and pride to every job — no matter the size.</p>
+        <div class="why-features">
+          <div class="why-feature"><div class="feature-icon">🛡️</div><div class="feature-text"><h4>Fully Insured</h4><p>Complete peace of mind on every job.</p></div></div>
+          <div class="why-feature"><div class="feature-icon">⏱️</div><div class="feature-text"><h4>Punctual &amp; Reliable</h4><p>We show up when we say we will.</p></div></div>
+          <div class="why-feature"><div class="feature-icon">💬</div><div class="feature-text"><h4>Clear Communication</h4><p>Transparent quoting, no surprises.</p></div></div>
+          <div class="why-feature"><div class="feature-icon">✅</div><div class="feature-text"><h4>Quality Guaranteed</h4><p>We stand behind every job we do.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ────────────────────────────────────────────── -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-wrap">
+      <div class="contact-info reveal">
+        <span class="section-label">Get In Touch</span>
+        <h2 class="section-title">Request a Free Quote</h2>
+        <p>Fill out the form and we'll get back to you within 24 hours. No obligation, no pressure — just honest advice and a fair price.</p>
+        <div class="contact-details">
+          <div class="contact-detail"><div class="detail-icon">📍</div><div><div class="detail-label">Location</div><div class="detail-value">Auckland, New Zealand</div></div></div>
+          <div class="contact-detail"><div class="detail-icon">📞</div><div><div class="detail-label">Phone</div><div class="detail-value">+64 XX XXX XXXX</div></div></div>
+          <div class="contact-detail"><div class="detail-icon">✉️</div><div><div class="detail-label">Email</div><div class="detail-value">carl@carldecor.co.nz</div></div></div>
+          <div class="contact-detail"><div class="detail-icon">🕐</div><div><div class="detail-label">Hours</div><div class="detail-value">Mon – Sat, 7am – 6pm</div></div></div>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap reveal">
+        <div class="form-title">Tell Us About Your Job</div>
+
+        <!-- Rate limit warning (shown by JS when triggered) -->
+        <div class="rate-warning" id="rateWarning">
+          ⚠️ Too many requests. Please wait a moment before trying again.
+        </div>
+
+        <!--
+          SECURITY: novalidate used so JS controls validation (not browser)
+          allowing us to sanitize before any submission attempt.
+          autocomplete="off" on the form prevents browser autofill on honeypot.
+        -->
+        <form id="contactForm" novalidate autocomplete="off">
+
+          <!-- ── HONEYPOT FIELD ─────────────────────────────────────
+               Hidden from real users via CSS (opacity:0, height:0).
+               Bots filling out all fields will populate this.
+               If it contains a value on submit, the request is silently
+               dropped — the bot receives no error, preventing probing.
+          ────────────────────────────────────────────────────────── -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="website">Website</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" placeholder="e.g. John Smith"
+                     maxlength="100" autocomplete="name" required />
+              <span class="error-msg" id="nameError">Please enter your name.</span>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" placeholder="e.g. 021 123 4567"
+                     maxlength="20" autocomplete="tel" required />
+              <span class="error-msg" id="phoneError">Please enter a valid NZ phone number.</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com"
+                   maxlength="254" autocomplete="email" required />
+            <span class="error-msg" id="emailError">Please enter a valid email address.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="service">Service Needed *</label>
+            <select id="service" name="service" required>
+              <option value="" disabled selected>Select a service…</option>
+              <option value="plumbing">Plumbing Repairs</option>
+              <option value="electrical">Electrical Work</option>
+              <option value="maintenance">General Home Maintenance</option>
+              <option value="furniture">Furniture Assembly &amp; Installation</option>
+              <option value="painting">Painting &amp; Decorating</option>
+              <option value="tiling">Tiling</option>
+              <option value="other">Other</option>
+            </select>
+            <span class="error-msg" id="serviceError">Please select a service.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Job Description *</label>
+            <textarea id="description" name="description"
+                      placeholder="Briefly describe the job, any access notes, or anything we should know…"
+                      maxlength="2000" required></textarea>
+            <span class="error-msg" id="descError">Please describe the job (max 2000 characters).</span>
+          </div>
+
+          <div class="form-group">
+            <label for="date">Preferred Date</label>
+            <input type="date" id="date" name="date" />
+          </div>
+
+          <!--
+            CAPTCHA INTEGRATION POINT
+            Uncomment and add your Turnstile site key when ready:
+
+            <div class="cf-turnstile" data-sitekey="YOUR_SITE_KEY" data-theme="light"></div>
+          -->
+
+          <button type="submit" class="form-submit" id="submitBtn">
+            Send My Quote Request →
+          </button>
+          <div class="form-success" id="formSuccess">
+            ✅ Thanks! We've received your request and will be in touch within 24 hours.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────────────────── -->
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-logo">Carl<span>Decor</span></div>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#gallery">Our Work</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 Carl Decor Handyman Services · Auckland, NZ</div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECURITY JAVASCRIPT MODULE
+     All security logic is isolated here, clearly commented,
+     and documented in README.md for recruiter review.
+═══════════════════════════════════════════════════════════════ -->
+<script nonce="CARLDECOR2026">
+'use strict';
+
+/* ──────────────────────────────────────────────────────────────
+   1. INPUT SANITIZATION
+   Strips HTML tags and encodes dangerous characters from any
+   string before it is used or submitted. Prevents XSS by
+   ensuring user input is never treated as executable markup.
+────────────────────────────────────────────────────────────── */
+const Security = {
+  sanitize(str) {
+    if (typeof str !== 'string') return '';
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#x27;')
+      .replace(/\//g, '&#x2F;')
+      .trim();
+  },
+
+  /* ────────────────────────────────────────────────────────────
+     2. INPUT VALIDATION
+     Server-side validation is authoritative; this is a
+     defense-in-depth layer on the client. Validates format
+     before any data leaves the browser.
+  ────────────────────────────────────────────────────────────── */
+  validators: {
+    name:        v => v.length >= 2 && v.length <= 100 && /^[a-zA-Z\s'\-\.]+$/.test(v),
+    email:       v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) && v.length <= 254,
+    phone:       v => /^[\d\s\+\-\(\)]{7,20}$/.test(v),
+    service:     v => ['plumbing','electrical','maintenance','furniture','painting','tiling','other'].includes(v),
+    description: v => v.length >= 10 && v.length <= 2000,
+  },
+
+  validate(fieldId, value) {
+    const validator = this.validators[fieldId];
+    return validator ? validator(value) : true;
+  },
+
+  /* ────────────────────────────────────────────────────────────
+     3. RATE LIMITING (client-side)
+     Tracks submission timestamps in memory. Rejects if more
+     than MAX_SUBMISSIONS occur within the TIME_WINDOW.
+     Prevents rapid automated form submission / spam floods.
+     Note: server-side rate limiting (e.g. Cloudflare WAF rules,
+     Formspree limits) is the authoritative layer.
+  ────────────────────────────────────────────────────────────── */
+  rateLimit: {
+    MAX_SUBMISSIONS: 3,
+    TIME_WINDOW_MS:  60 * 1000, // 1 minute
+    timestamps: [],
+
+    check() {
+      const now = Date.now();
+      this.timestamps = this.timestamps.filter(t => now - t < this.TIME_WINDOW_MS);
+      if (this.timestamps.length >= this.MAX_SUBMISSIONS) return false;
+      this.timestamps.push(now);
+      return true;
+    }
+  },
+
+  /* ────────────────────────────────────────────────────────────
+     4. HONEYPOT CHECK
+     The #website field is invisible to real users.
+     Bots that auto-fill all fields will populate it.
+     A non-empty value means the submitter is almost certainly
+     a bot — silently reject without alerting the bot.
+  ────────────────────────────────────────────────────────────── */
+  isBot() {
+    const hp = document.getElementById('website');
+    return hp && hp.value.length > 0;
+  }
+};
+
+/* ──────────────────────────────────────────────────────────────
+   FORM CONTROLLER
+   Orchestrates all security checks on submit.
+────────────────────────────────────────────────────────────── */
+(function initForm() {
+  const form       = document.getElementById('contactForm');
+  const submitBtn  = document.getElementById('submitBtn');
+  const successMsg = document.getElementById('formSuccess');
+  const rateWarn   = document.getElementById('rateWarning');
+
+  const fields = ['name', 'phone', 'email', 'service', 'description'];
+  const errorIds = { name:'nameError', phone:'phoneError', email:'emailError', service:'serviceError', description:'descError' };
+
+  function showError(fieldId, show) {
+    const input = document.getElementById(fieldId);
+    const errEl = document.getElementById(errorIds[fieldId]);
+    if (!input || !errEl) return;
+    input.classList.toggle('field-error', show);
+    errEl.classList.toggle('show', show);
+  }
+
+  function clearErrors() {
+    fields.forEach(f => showError(f, false));
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    clearErrors();
+    successMsg.style.display = 'none';
+    rateWarn.style.display   = 'none';
+
+    /* — Honeypot check — */
+    if (Security.isBot()) {
+      // Silent drop — bot receives fake success UX
+      successMsg.style.display = 'block';
+      form.reset();
+      return;
+    }
+
+    /* — Rate limit check — */
+    if (!Security.rateLimit.check()) {
+      rateWarn.style.display = 'block';
+      return;
+    }
+
+    /* — Validate and sanitize each field — */
+    let valid = true;
+    const payload = {};
+
+    fields.forEach(fieldId => {
+      const el  = document.getElementById(fieldId);
+      if (!el) return;
+      const raw       = el.value;
+      const sanitized = Security.sanitize(raw);
+      const ok        = Security.validate(fieldId, sanitized);
+      if (!ok && el.hasAttribute('required')) {
+        showError(fieldId, true);
+        valid = false;
+      } else {
+        payload[fieldId] = sanitized;
+      }
+    });
+
+    // Optional date field — no validation required
+    const dateEl = document.getElementById('date');
+    if (dateEl && dateEl.value) {
+      payload.date = Security.sanitize(dateEl.value);
+    }
+
+    if (!valid) return;
+
+    /* — Disable submit to prevent double-submission — */
+    submitBtn.disabled    = true;
+    submitBtn.textContent = 'Sending…';
+
+    /*
+      ── FORM SUBMISSION ───────────────────────────────────────
+      Wire up your endpoint here. Recommended options:
+
+      Option A — Formspree (simplest, free tier):
+        Replace YOUR_FORM_ID below and uncomment.
+
+      Option B — Cloudflare Workers (advanced, full control):
+        Lets you add server-side rate limiting, WAF rules, and
+        email via SendGrid/Mailgun. Document in README.
+
+      fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json',
+                   'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(r => r.ok ? showSuccess() : showError('form'))
+      .catch(() => showError('form'));
+    */
+
+    // Demo mode — simulates async submission
+    setTimeout(() => {
+      showSuccess();
+    }, 800);
+
+    function showSuccess() {
+      successMsg.style.display = 'block';
+      form.reset();
+      submitBtn.disabled    = false;
+      submitBtn.textContent = 'Send My Quote Request →';
+      successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  });
+
+  /* Live validation feedback on blur */
+  fields.forEach(fieldId => {
+    const el = document.getElementById(fieldId);
+    if (!el) return;
+    el.addEventListener('blur', () => {
+      if (el.value) {
+        const ok = Security.validate(fieldId, Security.sanitize(el.value));
+        showError(fieldId, !ok);
+      }
+    });
+    el.addEventListener('input', () => showError(fieldId, false));
+  });
+})();
+
+/* ──────────────────────────────────────────────────────────────
+   UI — Mobile menu
+────────────────────────────────────────────────────────────── */
+(function initNav() {
+  const hamburger  = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  document.querySelectorAll('.mobile-link').forEach(l =>
+    l.addEventListener('click', () => mobileMenu.classList.remove('open'))
+  );
+})();
+
+/* ──────────────────────────────────────────────────────────────
+   UI — Scroll reveal
+────────────────────────────────────────────────────────────── */
+(function initReveal() {
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+})();
+
+/* ──────────────────────────────────────────────────────────────
+   UI — Before / After Slider
+────────────────────────────────────────────────────────────── */
+(function initSlider() {
+  const slider  = document.getElementById('baSlider');
+  const afterEl = document.getElementById('sliderAfter');
+  const divider = document.getElementById('sliderDivider');
+  const handle  = document.getElementById('sliderHandle');
+  if (!slider) return;
+  let dragging = false;
+
+  function setSlider(x) {
+    const rect = slider.getBoundingClientRect();
+    const pct  = Math.max(0, Math.min(1, (x - rect.left) / rect.width));
+    const perc = pct * 100;
+    afterEl.style.clipPath = `inset(0 ${100 - perc}% 0 0)`;
+    divider.style.left = handle.style.left = perc + '%';
+  }
+
+  slider.addEventListener('mousedown',  e => { dragging = true; setSlider(e.clientX); });
+  window.addEventListener('mouseup',    () => dragging = false);
+  window.addEventListener('mousemove',  e => { if (dragging) setSlider(e.clientX); });
+  slider.addEventListener('touchstart', e => { dragging = true; setSlider(e.touches[0].clientX); }, { passive: true });
+  window.addEventListener('touchend',   () => dragging = false);
+  window.addEventListener('touchmove',  e => { if (dragging) setSlider(e.touches[0].clientX); }, { passive: true });
+})();
+</script>
+
+</body>
+</html>
